@@ -1,0 +1,93 @@
+openapi: 3.0.3
+info:
+  title: Book Management - OpenAPI 3.0 
+  description: |-
+    This is a Book Mangement Contract to mainly define the Operations required for the 
+    book management in the Library.
+    
+    Some useful links:
+    - [Book Management Repository](https://github.com/sandeepreddy1945/books-management-contract)
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: b.sandeepreddy209@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://github.com/sandeepreddy1945/books-management-contract
+tags:
+  - name: inventory
+    description: Everything about your Inventory
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+  - name: book-records
+    description: Access to Book Records
+    externalDocs:
+      description: Find out more about our store
+      url: http://swagger.io
+  - name: user
+    description: Operations about user
+paths:
+  /book:
+    get:
+      tags:
+        - inventory
+      summary: Retrive the Book Details By Id
+      description: Retrive the Book Details By Id of the particular book
+      operationId: findBookDetailsById
+      parameters: 
+        - name: id
+          in: query
+          description: The Unique Id Assigned to the Book
+          required: true
+          explode: true
+          allowEmptyValue: false
+          example: 1
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookDetails'          
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BookDetails'
+        '400':
+          description: Invalid status value
+          
+components:
+  schemas:
+    BookDetails:
+      type: object
+      properties:
+        id: 
+          type: string
+          example: 10
+          description: Unqiue Key assigned to the Book
+        bookId:
+          type: string
+          example: 10
+          description: Unqiue Key assigned to the Book
+        bookName:
+          type: string
+          description: Name of the Book
+          example: The Brooklyn Roads
+        catalogNumber:
+          type: string
+          description: The Catalog Indentified for the book
+          example: 7
+          
+            
+    

@@ -1,2 +1,2 @@
-# books-management-contract
-Repository for managing the books contract
+# library-management-contract
+Open Api contract repo that is used for a library management project. 
