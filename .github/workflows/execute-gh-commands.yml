@@ -53,7 +53,7 @@ jobs:
           gh issue comment ${{github.event.issue.number}} -b ":rocket: Hola! Welcome To The Release Preparation. Just sit back and relax while we prepare the release for you. We will Notify you here once the Release Process is complete."
           gh issue comment ${{github.event.issue.number}} -b "Triggering Release Process with Type: ${RELEASE_TYPE}"
         env:
-          GH_TOKEN: ${{secrets.ACCESS_TOKEN}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       # Refer here for documentation on this runner: https://github.com/zendesk/action-create-release/tree/master#example-workflow---create-a-release
       - name: Create Release With Tag
@@ -63,7 +63,7 @@ jobs:
           auto_increment_type: $RELEASE_TYPE
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       
       - name: Generate Release Notes
         run: echo ${{github.sha}} > Release.txt
@@ -77,11 +77,11 @@ jobs:
           asset_name: Release.txt
           asset_path: Release.txt
         env:
-          GITHUB_TOKEN: ${{secrets.ACCESS_TOKEN}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Comment and Close the Release Issue
         run: |
           gh issue comment ${{github.event.issue.number}} -b ":rocket: The release process is successfully completed. No Action Required from user end. This ticket will be auto-closed. Please Re-Open the ticket In Case any Further Release is required."
           gh issue close ${{github.event.issue.number}} -r "Completed"
         env:
-          GH_TOKEN: ${{secrets.ACCESS_TOKEN}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

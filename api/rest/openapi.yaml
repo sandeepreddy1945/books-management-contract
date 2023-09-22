@@ -32,6 +32,8 @@ tags:
       url: http://swagger.io
   - name: user
     description: Operations about user
+  - name: catalog
+    description: The catalog of details for ordering the books.
 paths:
   /book:
     get:
@@ -85,9 +87,20 @@ components:
           description: Name of the Book
           example: The Brooklyn Roads
         catalogNumber:
-          type: string
+          type: integer
+          format: int64
           description: The Catalog Indentified for the book
           example: 7
+        barCodeImage:
+          type: string
+          format: byte #binary
+          example: sample.png
+          description: The barcode image associated with the book.
+        departmentNumber:
+          type: integer
+          format: int64
+          example: 1
+          description: The department number associated with the book
           
             
     
